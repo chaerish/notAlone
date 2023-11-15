@@ -1,4 +1,4 @@
-package twotwone.notAlone;
+package twotwone.notAlone.domain;
 
 import lombok.Builder;
 import lombok.Getter;

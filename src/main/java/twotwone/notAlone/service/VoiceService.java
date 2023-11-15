@@ -2,10 +2,8 @@ package twotwone.notAlone.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import twotwone.notAlone.Voice;
+import twotwone.notAlone.domain.Voice;
 import twotwone.notAlone.repository.VoiceRepository;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
