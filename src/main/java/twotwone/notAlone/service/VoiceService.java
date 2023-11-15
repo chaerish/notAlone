@@ -5,21 +5,28 @@ import org.springframework.stereotype.Service;
 import twotwone.notAlone.domain.Voice;
 import twotwone.notAlone.repository.VoiceRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class VoiceService {
     private final VoiceRepository voiceRepository;
-    public void save(String prompt){
-        voiceRepository.save(Voice.builder().name(prompt).build());
-    }
-    public void updateCount(String prompt){
-        Voice voice = voiceRepository.findByName(prompt).get();
-        voice.updateCount();
-    }
-    public void saveOrUpdate(String prompt){
-        if(voiceRepository.findByName(prompt).isEmpty()){
-            save(prompt);
+
+    public void getVoice(String prompt){
+        Optional<Voice> voice = voiceRepository.findByName(prompt);
+        if (voice.isEmpty()) {
+            voiceRepository.save(Voice.builder()
+                    .name(prompt)
+                    .count(1)
+                    .build());
+        } else {
+            voice.get().increaseCount();
+            voiceRepository.save(voice.get());
         }
-        updateCount(prompt);
+    }
+
+    public List<Voice> getHistory() {
+        return voiceRepository.findAll();
     }
 }

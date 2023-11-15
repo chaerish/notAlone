@@ -10,10 +10,15 @@ import twotwone.notAlone.service.VoiceService;
 @RequiredArgsConstructor
 public class VoiceController {
     VoiceService voiceService;
-    //prompt 받아오기
+
     @GetMapping("/voice/requests")
-    public ResponseEntity<?> getPrompt(@RequestParam String prompt){
-        voiceService.saveOrUpdate(prompt);
+    public ResponseEntity<?> getPrompt(@RequestParam String prompt, @RequestParam String gender){
+        voiceService.getVoice(prompt);
         return ResponseEntity.ok("완료되었습니다.");
+    }
+
+    @GetMapping("/voice/")
+    public ResponseEntity<?> getHistory() {
+        return ResponseEntity.ok(voiceService.getHistory());
     }
 }
