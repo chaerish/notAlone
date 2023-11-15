@@ -13,8 +13,7 @@ public class VoiceController {
 
     @GetMapping("/voice/requests")
     public ResponseEntity<?> getPrompt(@RequestParam String prompt, @RequestParam String gender){
-        voiceService.getVoice(prompt);
-        return ResponseEntity.ok("완료되었습니다.");
+        return ResponseEntity.ok(voiceService.getVoice(prompt));
     }
 
     @GetMapping("/voice/")
