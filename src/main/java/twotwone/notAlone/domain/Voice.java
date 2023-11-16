@@ -6,12 +6,13 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "voices")
+@Document(collection = "voices")
 @Getter
 @Builder
 public class Voice {
+
     @Id
-    private long id;
+    private String id;
     private String name;
     private int count;
     public void increaseCount(){

@@ -1,6 +1,7 @@
 package twotwone.notAlone.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import twotwone.notAlone.service.VoiceService;
@@ -9,7 +10,9 @@ import twotwone.notAlone.service.VoiceService;
 @RequestMapping
 @RequiredArgsConstructor
 public class VoiceController {
-    VoiceService voiceService;
+
+    @Autowired
+    private VoiceService voiceService;
 
     @GetMapping("/voice/requests")
     public ResponseEntity<?> getPrompt(@RequestParam String prompt, @RequestParam String gender){
