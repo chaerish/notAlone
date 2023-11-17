@@ -21,9 +21,11 @@ public class VoiceService {
     @Autowired
     private final VoiceRepository voiceRepository;
 
-//    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    public String getVoice(String prompt){
+    private final String SERVER_ADDRESS = "http://localhost:8000";
+
+    public String getVoice(String prompt, String gender){
         Optional<Voice> voice = voiceRepository.findByName(prompt);
         if (voice.isEmpty()) {
             voiceRepository.save(Voice.builder()
@@ -35,8 +37,13 @@ public class VoiceService {
             voiceRepository.save(voice.get());
         }
 
-        //ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/voice?" + prompt, HttpMethod.GET, null, String.class);
-        return "response.getBody()";
+        ResponseEntity<String> response = restTemplate.exchange(
+                SERVER_ADDRESS + "/voice?prompt=" + prompt + "&gender=" + gender,
+                HttpMethod.POST,
+                null,
+                String.class);
+
+        return response.getBody();
     }
 
     public List<Voice> getHistory() {

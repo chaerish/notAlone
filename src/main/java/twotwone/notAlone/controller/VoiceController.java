@@ -16,7 +16,7 @@ public class VoiceController {
 
     @GetMapping("/voice/requests")
     public ResponseEntity<?> getPrompt(@RequestParam String prompt, @RequestParam String gender){
-        return ResponseEntity.ok(voiceService.getVoice(prompt));
+        return ResponseEntity.ok(voiceService.getVoice(prompt, gender));
     }
 
     @GetMapping("/voice/")
