@@ -38,7 +38,7 @@ public class VoiceService {
         }
 
         ResponseEntity<String> response = restTemplate.exchange(
-                SERVER_ADDRESS + "/voice?prompt=" + prompt + "&gender=" + gender,
+                SERVER_ADDRESS + "/voice/create?prompt=" + prompt + "&gender=" + gender,
                 HttpMethod.POST,
                 null,
                 String.class);

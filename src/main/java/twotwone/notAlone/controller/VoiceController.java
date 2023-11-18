@@ -14,12 +14,12 @@ public class VoiceController {
     @Autowired
     private VoiceService voiceService;
 
-    @GetMapping("/voice/requests")
+    @PostMapping("/voice/create")
     public ResponseEntity<?> getPrompt(@RequestParam String prompt, @RequestParam String gender){
         return ResponseEntity.ok(voiceService.getVoice(prompt, gender));
     }
 
-    @GetMapping("/voice/")
+    @GetMapping("/voice/history")
     public ResponseEntity<?> getHistory() {
         return ResponseEntity.ok(voiceService.getHistory());
     }
